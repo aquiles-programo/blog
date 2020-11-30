@@ -2,10 +2,14 @@ const mongoose = require('mongoose')
 var uniqueValidator = require('mongoose-unique-validator')
 
 const blogSchema = new mongoose.Schema({
-  title: String,
-  author: String,
+  title: { type: String, required: true },
+  author: { type: String, required: true },
   url: String,
-  likes: Number
+  likes: { type: String, default: '0' },
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  }
 })
 
 blogSchema.plugin(uniqueValidator)
